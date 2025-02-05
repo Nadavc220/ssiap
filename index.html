@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Write a description of the project">
+  <meta name="keywords" content="Keyword1, Keyword2, Keyword3">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Semantic Segmentation in Art Paintings</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/new_images/cat_icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            Semantic Segmentation in Art Paintings
+          </h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/nadavc220/">Nadav Z. Cohen</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/yael-newman-34228b79/">Yael Newman</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://faculty.runi.ac.il/arik/site/index.asp">Ariel Shamir</a><sup>3</sup>
+            </span>
+          </div>
+
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>The Hebrew University of Jerusalem, <br><sup>2</sup>Tel-Aviv University, <sup>3</sup>Reichman University</span>
+          </div>
+
+          <h1 class="subtitle has-text-centered">
+            <div class="conference-title">
+                <img src="static/new_images/eurographics2022-logo.png" class="conference-logo" alt="EuroGraphics Logo" style="width: 65px; height: 65px;">
+                <a href="https://diglib.eg.org/items/1b0ec9ea-c6b3-4e9f-afbc-b0edb277028e"><span class="dnerf">Computer Graphics Forum (EuroGraphics) 2022</span></a>
+                
+            </div>
+          </h1>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://diglib.eg.org/bitstream/handle/10.1111/cgf14473/v41i2pp261-275.pdf?sequence=1&isAllowed=y"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://diglib.eg.org/bitstream/handle/10.1111/cgf14473/paper1063_1.pdf?sequence=2&isAllowed=y"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Supplemental</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2203.03238"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/embed/3Xic11_bnC8?si=gqLOLBl_gA881tCG"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Nadavc220/SemanticSegmentationInArtPaintings"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="#dram-dataset" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="far fa-images"></i>
+                  </span>
+                  <span>DRAM Dataset</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small ">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <div class="hero-body">
+        <div class="container">
+          <div class="content has-text-justified" style="margin-top: -30px">
+            <!-- <img src="./static/images/results_text.png"
+                  class="interpolation-image"
+                  alt="Interpolate start reference image."/> -->
+            
+            <img src="./static/new_images/teaser.png"
+                  class="interpolation-image"
+                  alt="Interpolate start reference image."/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths", style="margin-top: 20px;">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="hero-body">
+          <div class="content has-text-justified">
+            <p>
+              Semantic segmentation is a difficult task even when trained in a supervised manner on photographs.
+              In this paper, we tackle the problem of semantic segmentation of artistic paintings, an even more challenging task because of a much larger diversity in colors, textures, and shapes and because there are no ground truth annotations available for segmentation.
+            </p>
+            <p>
+              
+              We propose an unsupervised method for semantic segmentation of paintings using domain adaptation.
+              Our approach creates a training set of pseudo-paintings in specific artistic styles by using style-transfer on the PASCAL VOC 2012 dataset, and then applies domain confusion between PASCAL VOC 2012 and real paintings.
+              These two steps build on a new dataset we gathered called DRAM (Diverse Realism in Art Movements) composed of figurative art paintings from four movements, which are highly diverse in pattern, color, and geometry.
+              To segment new paintings, we present a composite multi-domain adaptation method that trains on each sub-domain separately and composes their solutions during inference time. 
+              Our method provides better segmentation results not only on the specific artistic movements of DRAM, but also on other, unseen ones.
+              We compare our approach to alternative methods and show applications of semantic segmentation in art paintings.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="video-container" style="margin-top: 20px;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/3Xic11_bnC8?si=gqLOLBl_gA881tCG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Presentation:</span> EuroGraphics 2022 - Reims, France
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section id="dram-dataset" class="hero is-light is-small" >
+  <div class="container"> <!-- Added container -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths" style="margin-top: 40px; margin-bottom: 20px;">
+        <!-- DRAM Dataset -->
+        <h2 class="title is-2"><b style="color: red;">D</b><b style="color: green;">R</b><b style="color: blueviolet;">A</b><b style="color: orange;">M</b> Dataset</h2>
+        <div class="hero-body">
+          <div class="content has-text-justified">
+            <p>The <strong style="color: red;">D</strong>iverse <strong style="color: green;">R</strong>ealism in <strong style="color: blueviolet;">A</strong>rt <strong style="color: orange;">M</strong>ovements dataset is a Domain Adaptation dataset for Semantic Segmentation which is mainly comprised of four main art movements: <b><i>Realism</i></b>, <b><i>Impressionism</i></b>, <b><i>Post-Impressionism</i></b>, and <b><i>Expressionism</i></b>.</p>
+            <p>The dataset is used in our paper as a target domain, meaning it has an unlabeled training set and a fully annotated test set. The test annotations follows the guidelines of PASCAL VOC2012 which serves in our paper as the source dataset. For more info visit the PASCAL dataset <a href="http://host.robots.ox.ac.uk/pascal/VOC/voc2012/" style="color:blue; text-decoration:underline;">website</a>.</p>
+
+            <p>In addition, <b style="color: red;">D</b><b style="color: green;">R</b><b style="color: blueviolet;">A</b><b style="color: orange;">M</b> has an 'Unseen' test sets which were unseen during training: <b><i>Art Nouveau</i></b>, <b><i>Baroque</i></b>, <b><i>Cubism</i></b>, <b><i>Divisionism</i></b>, <b><i>Fauvism</i></b>, <b><i>Ink & Wash</i></b>, <b><i>Japonism</i></b>, <b><i>Rococo</i></b>.</p>
+        
+              <b style="color: red;">D</b><b style="color: green;">R</b><b style="color: blueviolet;">A</b><b style="color: orange;">M</b> covers 11 of the 20 classes used in PASCAL: <b><i>Bird, Boat, Bottle, Cat, Chair, Cow, Dog, Horse, Person, Potted-Plant,</i></b> and <b><i>Sheep</i></b>. The rest of the classes are considered Background, which is the 12th class of the dataset.
+              For more info please read Section 3 of our paper.
+              <!-- We offer to download our dataset in two versions: raw and processed. -->
+              <!-- The raw version holds all DRAM dataset and annotations without additional processing while the processed version holds the dataset as used in our paper. Accompanying our dataset, a repository for processing the raw data, filtering PASCAL dataset and creating pseudo-paintings as described in the paper. See downloads and repo links below. -->
+            </p>
+            <img src="./static/new_images/data_stats.png"
+                class="interpolation-image"
+                alt="Interpolate start reference image."/>
+
+            <h3>Download</h3>
+            <p>We offer to download our dataset in two versions: <b>Raw</b> and <b>Processed.</b></p>
+            <p>The raw version holds all <b style="color: red;">D</b><b style="color: green;">R</b><b style="color: blueviolet;">A</b><b style="color: orange;">M</b> dataset and annotations without additional processing while the processed version holds the dataset as used in our paper. Accompanying our dataset, we share our code for processing the raw data, filtering PASCAL dataset, and creating pseudo-paintings (as described in the paper) in the project repo.</p>
+              
+            <h4><u>Terms of Use</u></h4>
+            <p>This dataset is provided for research purposes only and comes without any warranty. Commercial use is strictly prohibited. If you use this dataset or any part of it in your research, we kindly ask that you cite our paper (see BibTeX below).</p>
+            <p>By downloading the dataset, you agree to these terms.</p>
+          </div>
+        </div>
+        
+        <div class="button-container">
+          <span class="link-block_download">
+            <a href="https://faculty.runi.ac.il/arik/site/artseg/DRAM_raw.zip"
+               class="external-link button is-normal is-rounded is-dark">
+              <span>Raw Dataset</span>
+            </a>
+          </span>
+        
+          <span class="link-block_download">
+            <a href="https://faculty.runi.ac.il/arik/site/artseg/DRAM_processed.zip"
+               class="external-link button is-normal is-rounded is-dark">
+              <span>Processed Dataset</span>
+            </a>
+          </span>
+        </div>
+      
+        <img src="./static/new_images/dataset.png"
+                  class="interpolation-image"
+                  alt="Interpolate start reference image."/>
+      </div>
+    </div>
+  </div> <!-- Close container -->
+</section>
+
+<section class="hero is-small" >
+  <div class="container"> <!-- Added container -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths" style="margin-top: 40px;">
+        <!-- How Does it Work -->
+        <h2 class="title is-2">Method</h2>
+        <div class="hero-body">
+          <div class="content has-text-justified">
+            <p>
+              Semantic Segmentation in Art Paintings explores much more than the task of segmenting paintings.
+              In our paper, we explore the concept of domain adaptation and its current applications in a way never explred before: using photographic data as the souce labeled domain and synthetic data as the target unlabeled domain.
+              We specifically use a highly variable target domain for our experiments, composed from paintings of a variaty of art styles, so we can deeply understand and make practical assesments about the ability of current domain adaptation frameworks to perform well over highly variable, synthetic targeted tasks.
+              We invite you to explore our work and read our paper.
+            </p>
+          </div>
+        </div>
+
+        <!-- DRAM Dataset -->
+        <!-- <h2 class="title is-2"><b style="color: red;">D</b><b style="color: green;">R</b><b style="color: blueviolet;">A</b><b style="color: orange;">M</b> Dataset</h2>
+        <div class="hero-body">
+          <div class="content has-text-justified">
+            <p>The <strong style="color: red;">D</strong>iverse <strong style="color: green;">R</strong>ealism in <strong style="color: blueviolet;">A</strong>rt <strong style="color: orange;">M</strong>ovements dataset is a Domain Adaptation dataset for Semantic Segmentation which is mainly comprised from four main art movements: <b><i>Realism</i></b>, <b><i>Impressionism</i></b>, <b><i>Post-Impressionism</i></b>, and <b><i>Expressionism</i></b>.</p>
+            <p>The dataset is used in our paper as a target domain, meaning it has an unlabeled training set and a fully annotated test set. The test annotations follows the guidelines of PASCAL VOC2012 which serves in our paper as the source dataset. For more info visit the PASCAL dataset <a href="http://host.robots.ox.ac.uk/pascal/VOC/voc2012/" style="color:blue; text-decoration:underline;">website</a>.</p>
+
+            <p>In addition, <b style="color: red;">D</b><b style="color: green;">R</b><b style="color: blueviolet;">A</b><b style="color: orange;">M</b> has an 'Unseen' test sets which were unseen during training: <b><i>Art Nouveau</i></b>, <b><i>Baroque</i></b>, <b><i>Cubism</i></b>, <b><i>Divisionism</i></b>, <b><i>Fauvism</i></b>, <b><i>Ink & Wash</i></b>, <b><i>Japonism</i></b>, <b><i>Rococo</i></b>.</p>
+        
+              <b style="color: red;">D</b><b style="color: green;">R</b><b style="color: blueviolet;">A</b><b style="color: orange;">M</b> covers 11 of the 20 classes used in PASCAL: <b><i>Bird, Boat, Bottle, Cat, Chair, Cow, Dog, Horse, Person, Potted-Plant,</i></b> and <b><i>Sheep</i></b>. The rest of the classes are considered Background, which is the 12th class of the dataset.
+              For more info please read Section 3 of our paper.
+              We offer to download our dataset in two versions: raw and processed.
+              The raw version holds all DRAM dataset and annotations without additional processing while the processed version holds the dataset as used in our paper. Accompanying our dataset, a repository for processing the raw data, filtering PASCAL dataset and creating pseudo-paintings as described in the paper. See downloads and repo links below.
+            </p>
+          </div>
+        </div>
+        <img src="./static/new_images/data_stats.png"
+                  class="interpolation-image"
+                  alt="Interpolate start reference image."/>
+        <img src="./static/new_images/dataset.png"
+                  class="interpolation-image"
+                  alt="Interpolate start reference image."/> -->
+
+        <!-- Training -->
+        <h2 class="title is-2">Training</h2>
+        <div class="columns is-centered" style="margin-top: 20px;">
+          <div class="column">
+            <div class="content">
+              <div class="hero-body">
+                <h2 class="title is-3">Pseudo Paintings</h2>
+                <p>
+                  Our initial training phase begins with generating Pseudo Paintings—artistic augmentations of a labeled photographic dataset.
+                  To achieve this, we train a style-transfer network for each artistic style using its unlabeled training data and apply it to the labeled dataset.
+                  By utilizing these pseudo paintings, we fine-tune a base model with artistically labeled data for each training art movement, embedding artistic characteristics into the trained model.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="hero-body">
+              <h2 class="title is-3">Domain Confusion</h2>
+              <div class="columns is-centered">
+                <div class="column content">
+                  <p>
+                    In the Domain Confusion step, we use a discriminator to adversarially train the model's encoders, aligning paintings and photographs within a shared latent space.
+                    This refined domain captures features common to both data domains, enabling knowledge from the labeled photographic data to enhance the learning of the unlabeled painting dataset.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <img src="./static/new_images/train_pipeline.png"
+                  class="interpolation-image"
+                  alt="Interpolate start reference image."/>
+        
+        <!-- Inference -->
+        <div style="margin-top: 40px; margin-bottom: 20px;">
+          <h2 class="title is-2">Inference</h2>
+          <div class="columns is-centered">
+            <!-- Left Column for Image -->
+            <div class="column is-half" style="display: flex; justify-content: center; align-items: center;">
+              <div class="content">
+                <p>
+                  To perform inference on a new painting, we pass the image through all the trained models. Next, we encode the image into a GRAM representation and identify its k-nearest neighbors from the training set.
+                  Using the percentage of each art movement in the KNN results, we apply a weighted sum of the softmax outputs from the movement-specific models.
+                  This approach not only enhances the results for the trained art movements but also improves performance for previously unseen movements.
+                  The improvement arises from the ability to combine information from different art movements, allowing the model to better represent novel, unseen artistic styles.
+                </p>
+              </div>
+            </div>
+
+            <!-- Right Column for Text -->
+            <div class="column is-half">
+              <img src="./static/new_images/inference.png"
+                   class="interpolation-image"
+                   alt="Interpolate start reference image."
+                   style="max-width: 85%; height: auto;"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- Close container -->  
+</section>
+
+<section class="hero is-small is-light">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-2" style="margin-top: 40px;">Results</h2>
+      <div class="hero-body">
+        <div class="container">
+          <img src="./static/new_images/results.png"
+                  class="interpolation-image"
+                  alt="Interpolate start reference image."/>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    
+
+<section class="hero is-small">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3" style="margin-top: 20px;"><u>Application</u>: Semantic Guided Style Transfer</h2>
+          <div class="content has-text-justified" style="margin-top: 20px;">
+            <p>
+              Style transfer, where a photograph is transformed into a stylized version based on a selected stylistic image, has gained significant popularity.
+              While most style transfer techniques apply the same stylization across the entire image, it can be more effective to segment the image into regions, identify objects, and apply different stylizations based on the image's semantic content.
+              Alex J. Champandard introduced a semantic style transfer <a href="https://arxiv.org/abs/1603.01768">method</a> that requires two images (style and content) and two corresponding semantic maps.
+              However, the current version of this method relies on manually created semantic maps, which can be difficult to produce.
+              By utilizing our semantic segmentation approach, we automate this process and develop an end-to-end framework for semantic style transfer that only requires a pair of content and style images.
+            </p>
+            <img src="./static/new_images/style_transfer.png"
+                  class="interpolation-image"
+                  alt="Interpolate start reference image."/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small is-light">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3" style="margin-top: 20px;"><u>Application</u>: Comparative Collections</h2>
+          <div class="content has-text-justified" style="margin-top: 20px;">
+            <p>
+              To better understand and analyze artworks in a specific artistic
+              movement or of a specific artist, comparisons are often performed
+              between different paintings. Using semantic segmentation, such
+              comparisons can be done not only at the painting level but also
+              on specific objects or items. Using semantic segmentation one can
+              gather all occurrences of a certain class from a given set of paintings,
+              extract them from their original images and place them side-by-side for comparison.
+            </p>
+            <img src="./static/new_images/collection0.png"
+                  class="interpolation-image"
+                  alt="Interpolate start reference image."/>
+            <img src="./static/new_images/collection1.png"
+                  class="interpolation-image"
+                  alt="Interpolate start reference image."/>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Concurrent Work. -->
+    <!-- <div class="columns is-centered">
+      <div class="column is-four-fifths"> -->
+        <!-- <div class="column is-full-width"> -->
+        <!-- <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            There's a lot of excellent work that was introduced around the same time as ours.
+          </p>
+          <p>
+            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
+          </p>
+          <p>
+            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
+            both use deformation fields to model non-rigid scenes.
+          </p>
+          <p>
+            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
+          </p>
+          <p>
+            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
+          </p>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article {ArtSeg-22,
+          journal = {Computer Graphics Forum},
+          title = {{Semantic Segmentation in Art Paintings}},
+          author = {Cohen, Nadav and Newman, Yael and Shamir, Ariel},
+          year = {2022},
+          publisher = {The Eurographics Association and John Wiley & Sons Ltd.},
+          ISSN = {1467-8659},
+          DOI = {10.1111/cgf.14473}}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="link to">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/Nadavc220" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered has has-text-centered">
+      
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is based on the <a href="https://nerfies.github.io/">Nerfies</a> webpage and is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>. This means you are free to borrow the source code of this website, we just ask that you link back to this page in the footer.
+          </p>
+          <!-- <p>
+            Website source code based on the Nerfies project page. If you want to reuse their source code, please credit them appropriately. 
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
